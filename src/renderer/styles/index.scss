@@ -1,7 +1,69 @@
+@import "./mixins.scss";
+@import "./override-antd.scss";
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   color: #000;
   margin: 0;
   padding: 0;
   height: 100vh;
+  font-size: 14px;
+}
+
+.box {
+  border-radius: 15px;
+  box-shadow:
+    0px 1px 3px 0px rgba(0, 0, 0, 0.1),
+    0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+  padding: 22px 15px;
+}
+
+h1 {
+  font-size: 32px;
+  margin: 0;
+}
+
+h2 {
+  font-size: 24px;
+  margin: 0;
+}
+
+h3 {
+  font-size: 22px;
+  margin: 0;
+}
+
+h4 {
+  font-size: 20px;
+  margin: 0;
+}
+
+h5 {
+  font-size: 18px;
+  margin: 0;
+}
+
+h6 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-medium {
+  font-weight: 500;
 }

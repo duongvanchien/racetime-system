@@ -1,9 +1,9 @@
 import { Suspense } from 'react';
 import { Route, Routes } from 'react-router';
 
-import Layout from '../layout/Layout';
-import HomePage from '../pages/home/Home';
-import LoginPage from '../pages/login/Login';
+import Layout from '../layout/layout';
+import HomePage from '../pages/home/home.page';
+import LoginPage from '../pages/login/login.page';
 import { HOME, LOGIN } from './path';
 
 export default (
