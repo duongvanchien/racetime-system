@@ -20,9 +20,10 @@ interface IMenuItem {
   nameIcon: string;
   title: string;
   route: string;
+  handleClose: () => void;
 }
 
-const MenuItem = ({ nameIcon, title, route }: IMenuItem) => {
+const MenuItem = ({ nameIcon, title, route, handleClose }: IMenuItem) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -30,6 +31,7 @@ const MenuItem = ({ nameIcon, title, route }: IMenuItem) => {
     <div
       onClick={() => {
         navigate(route, { replace: true });
+        handleClose();
       }}
       className="menu_item"
       style={{ color: location.pathname === route ? '#D1F700' : '#fff' }}
@@ -70,6 +72,7 @@ const Menu = ({ open, handleClose }: IMenu) => {
             nameIcon="pepicons-pop:countdown"
             title="MÀN HÌNH RACETIME"
             route={HOME}
+            handleClose={handleClose}
           />
         </Col>
         <Col span={12}>
@@ -77,6 +80,7 @@ const Menu = ({ open, handleClose }: IMenu) => {
             nameIcon="foundation:list-number"
             title="CHIP READS"
             route={CHIP_READ}
+            handleClose={handleClose}
           />
         </Col>
 
@@ -85,6 +89,7 @@ const Menu = ({ open, handleClose }: IMenu) => {
             nameIcon="basil:file-upload-outline"
             title="IMPORT FILE MAPPING"
             route={IMPORT_FILE_MAPPING}
+            handleClose={handleClose}
           />
         </Col>
         <Col span={12}>
@@ -92,6 +97,7 @@ const Menu = ({ open, handleClose }: IMenu) => {
             nameIcon="ant-design:setting-filled"
             title="CẤU HÌNH THIẾT BỊ"
             route={DEVICE_SETTING}
+            handleClose={handleClose}
           />
         </Col>
 
@@ -100,6 +106,7 @@ const Menu = ({ open, handleClose }: IMenu) => {
             nameIcon="ph:files-bold"
             title="QUẢN LÝ FILE KẾT QUẢ"
             route={FILES_MANAGEMENT}
+            handleClose={handleClose}
           />
         </Col>
         <Col span={12}></Col>
