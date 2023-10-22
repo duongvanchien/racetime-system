@@ -9,7 +9,9 @@ const Layout = () => {
       <div>
         <Header />
         <div className="pr-25 pl-25 pb-25">
-          <Outlet />
+          <div className="mt-24">
+            <Outlet />
+          </div>
           <div style={{ position: 'absolute', bottom: '10px' }}>
             © 2023. Trackify
           </div>
