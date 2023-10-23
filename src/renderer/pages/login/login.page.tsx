@@ -10,6 +10,10 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   const onFinish = (dataForm: any) => {
+    localStorage.setItem(
+      'user',
+      JSON.stringify({ username: dataForm.username }),
+    );
     navigate(HOME, { replace: true });
   };
 

@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 
-import Header from './header';
 import './layout.scss';
+import Header from './Header';
 
 const Layout = () => {
   return (
@@ -12,9 +12,9 @@ const Layout = () => {
           <div className="mt-24">
             <Outlet />
           </div>
-          <div style={{ position: 'absolute', bottom: '10px' }}>
+          {/* <div style={{ position: 'absolute', bottom: '10px' }}>
             © 2023. Trackify
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

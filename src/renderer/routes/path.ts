@@ -1,4 +1,5 @@
-export const LOGIN = '/';
+export const WELCOME = '/';
+export const LOGIN = '/login';
 export const HOME = '/home';
 export const CHIP_READ = '/chip-read';
 export const IMPORT_FILE_MAPPING = '/import-file-mapping';

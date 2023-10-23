@@ -7,7 +7,9 @@ import Clock from '../containers/clock';
 import Menu from '../containers/menu';
 
 const Header = () => {
+  const user = localStorage.getItem('user');
   const [openMenu, setOpenMenu] = useState(false);
+  console.log(user);
 
   return (
     <div className="header">
