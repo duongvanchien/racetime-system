@@ -2,14 +2,12 @@ import { useEffect, useMemo, useState } from 'react';
 import Buttons from './buttons';
 
 function StopWatch() {
-  const [isActive, setIsActive] = useState(false);
-  const [isPaused, setIsPaused] = useState(true);
+  const [isRunning, setIsRunning] = useState(false);
   const [time, setTime] = useState(0);
 
   useEffect(() => {
     let interval: any;
-
-    if (isActive && isPaused === false) {
+    if (isRunning) {
       interval = setInterval(() => {
         setTime((prevTime) => prevTime + 10);
       }, 10);
@@ -19,28 +17,35 @@ function StopWatch() {
     return () => {
       clearInterval(interval);
     };
-  }, [isActive, isPaused]);
+  }, [isRunning]);
 
   const handleStart = () => {
-    setIsActive(true);
-    setIsPaused(false);
+    setIsRunning(true);
   };
 
-  const handleReset = () => {
-    setIsActive(false);
+  const handleStop = () => {
+    setIsRunning(false);
     setTime(0);
   };
 
   const renderButtons = useMemo(
-    () => <Buttons handleStart={handleStart} handleReset={handleReset} />,
-    [],
+    () => (
+      <Buttons
+        handleStart={handleStart}
+        handleStop={handleStop}
+        isRunning={isRunning}
+      />
+    ),
+    [isRunning],
   );
 
   return (
     <div className="stop-watch">
       {renderButtons}
-
       <div className="timer">
+        <span className="digits">
+          {('0' + Math.floor((time / 3600000) % 60)).slice(-2)}:
+        </span>
         <span className="digits">
           {('0' + Math.floor((time / 60000) % 60)).slice(-2)}:
         </span>
