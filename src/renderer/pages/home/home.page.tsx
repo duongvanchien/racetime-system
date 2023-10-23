@@ -1,9 +1,7 @@
-import { useEffect } from 'react';
 import { Col, Row } from 'antd';
-import * as mqtt from 'mqtt';
 
-import StopWatch from '../../containers/stopwatch/watch';
 import Table from '../../components/table/Table';
+import StopWatch from '../../containers/stopwatch/watch';
 
 const HomePage = () => {
   const columns = [
@@ -123,15 +121,6 @@ const HomePage = () => {
       rssi: '-69',
     },
   ];
-
-  // useEffect(() => {
-  //   const connectMQTT = async () => {
-  //     const client = await mqtt.connect('ws://broker.emqx.io:8083/mqtt', {
-  //       clientId: 'mqttx_a8e42016',
-  //     });
-  //   };
-  //   connectMQTT();
-  // }, []);
 
   return (
     <div>
