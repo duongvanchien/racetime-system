@@ -74,6 +74,7 @@ const createWindow = async () => {
     width: 1024,
     height: 728,
     icon: getAssetPath('icon.ico'),
+    // fullscreen: true,
     webPreferences: {
       preload: app.isPackaged
         ? path.join(__dirname, 'preload.js')
@@ -82,6 +83,7 @@ const createWindow = async () => {
   });
 
   mainWindow.loadURL(resolveHtmlPath('index.html'));
+  // mainWindow.setFullScreen(true);
 
   mainWindow.on('ready-to-show', () => {
     if (!mainWindow) {
