@@ -15,7 +15,28 @@ $ git clone --depth=1 https://github.com/electron-react-boilerplate/electron-rea
 $ cd your-project-name
 ```
 
+## Setup MQTT with docker
+
+1. Install <a href="https://docs.docker.com/desktop/install/windows-install/">Docker</a>
+2. Install image for MQTT
+
+```bash
+$ docker pull emqx/emqx
+```
+
+3. Run container for MQTT
+
+```bash
+$ docker run -d --name emqx -e EMQX_LISTENER__TCP__EXTERNAL=1883 -p 18083:18083 -p 1883:1883 -p 8083:8083 -p 8084:8084 emqx/emqx:latest
+```
+
+Port 18083 for web management MQTT
+Port 1883 for MQTT
+Port 8083 for WS
+Port 8084 for WSS
+
 ## Installation
+
 Node version greater than 14.x
 
 ```bash
