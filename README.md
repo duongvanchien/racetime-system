@@ -1,6 +1,4 @@
-## Description
-
-# Technologies
+## Technologies
 
 <ul>
   <li><a href="https://electron.atom.io/">Electron</a></li>
@@ -10,7 +8,7 @@
   <li><a href="https://www.npmjs.com/package/react-refresh">React Fast Refresh</a></li>
 </ul>
 
-# Init project
+## Init project
 
 ```bash
 $ git clone --depth=1 https://github.com/electron-react-boilerplate/electron-react-boilerplate your-project-name
@@ -52,7 +50,7 @@ $ http://localhost:1212
 
 ## Build
 
-# For dev
+### For dev
 
 ```bash
 $ yarn package-dev
@@ -60,7 +58,7 @@ or
 $ npm run package-dev
 ```
 
-# For live
+### For live
 
 ```bash
 $ yarn package-live
