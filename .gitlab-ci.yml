@@ -7,6 +7,6 @@ build:
   script:
     - npm install
     - npm run package-live # Thay lệnh này bằng lệnh xây dựng của ứng dụng Electron của bạn
-  artifacts:
-    paths:
-      - /release/build/Racetime System Setup 4.6.0.exe
+  # artifacts:
+  #   paths:
+  #     - /release/build/Racetime System Setup 4.6.0.exe
