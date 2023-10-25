@@ -1,14 +1,30 @@
 import { Checkbox, Pagination, Select, Table as TableAnt } from 'antd';
 import './table.scss';
-import { DEFAULT_PAGE_SIZE, PAGE_SIZE_OPTIONS } from '../../constants/common';
+import {
+  DEFAULT_PAGE_SIZE,
+  IPagination,
+  PAGE_SIZE_OPTIONS,
+} from '../../constants/common';
 
 interface ITable {
   columns: any;
   data: any;
+  totalData: any;
   disablePagination?: boolean;
+  pagination?: IPagination;
+  handleChangePage?: (page: number) => void;
+  handleChangePageSize?: (pageSize: number) => void;
 }
 
-const Table = ({ columns, data, disablePagination }: ITable) => {
+const Table = ({
+  columns,
+  data,
+  totalData,
+  disablePagination,
+  pagination,
+  handleChangePage,
+  handleChangePageSize,
+}: ITable) => {
   const columnsConvert = columns.map((column: any) => ({
     ...column,
     key: column.title,
@@ -24,24 +40,29 @@ const Table = ({ columns, data, disablePagination }: ITable) => {
       />
       {!disablePagination && (
         <div className="pagination_container">
-          <div>
-            Hiển thị
-            <Select
-              defaultValue={DEFAULT_PAGE_SIZE}
-              options={PAGE_SIZE_OPTIONS}
-              className="mr-5 ml-5"
-            />
-            trong tổng số {data.length} bản ghi
-          </div>
+          {totalData.length > 0 && (
+            <div>
+              Hiển thị
+              <Select
+                defaultValue={pagination?.pageSize || DEFAULT_PAGE_SIZE}
+                options={PAGE_SIZE_OPTIONS}
+                className="mr-5 ml-5"
+                onChange={handleChangePageSize}
+              />
+              trong tổng số {totalData.length} bản ghi
+            </div>
+          )}
           <Checkbox defaultChecked className="font-medium">
             Live Update
           </Checkbox>
-          <Pagination
-            defaultCurrent={1}
-            total={data.length}
-            pageSize={DEFAULT_PAGE_SIZE}
-            current={1}
-          />
+          {totalData.length > 0 && (
+            <Pagination
+              current={pagination?.currentPage || 1}
+              total={totalData.length}
+              pageSize={pagination?.pageSize}
+              onChange={handleChangePage}
+            />
+          )}
         </div>
       )}
     </>

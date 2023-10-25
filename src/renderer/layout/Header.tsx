@@ -69,7 +69,9 @@ const Header = () => {
         />
       </div>
 
-      <div className="fs-16 font-bold">Mã thiết bị: {readerCode}</div>
+      <div className="fs-14 font-bold">
+        Mã thiết bị: {readerCode || 'Không có kết nối'}
+      </div>
 
       <Clock />
 

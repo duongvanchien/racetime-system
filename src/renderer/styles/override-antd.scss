@@ -16,6 +16,44 @@
 }
 
 .ant-checkbox-checked .ant-checkbox-inner {
-  background-color: #78A55A !important;
-  border-color: #78A55A !important;
+  background-color: #78a55a !important;
+  border-color: #78a55a !important;
+}
+
+.ant-modal-content {
+  padding: 0 !important;
+}
+
+.modal-error {
+  .ant-modal-header {
+    margin-bottom: 0 !important;
+    background-color: #ff5858 !important;
+  }
+}
+
+.modal-default {
+  .ant-modal-header {
+    margin-bottom: 0 !important;
+    background-color: #f6f8fa !important;
+  }
+}
+
+.ant-modal-title {
+  padding: 10px !important;
+  font-weight: 400 !important;
+}
+
+.ant-modal-footer {
+  margin-top: 0 !important;
+  padding: 10px !important;
+  padding-top: 0 !important;
+}
+
+.ant-modal-close {
+  top: 10px !important;
+}
+
+.ant-modal-body {
+  padding: 30px 10px !important;
+  text-align: center !important;
 }

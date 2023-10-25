@@ -1,7 +1,7 @@
-import { useNavigate } from 'react-router-dom';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import RaceTimeLogo from '../../assets/logo-racetime.png';
 import { LOCALSTORAGE_USER } from '../../constants/common';

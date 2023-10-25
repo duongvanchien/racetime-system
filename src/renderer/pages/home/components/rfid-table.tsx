@@ -12,7 +12,9 @@ const RfidTable = ({ isActive, isAccessInternet, readerCode }: IRfidTable) => {
   const columns = [
     {
       title: 'Mã thiết bị',
-      render: (_: any, record: any) => <div>{record?.readerCode}</div>,
+      render: (_: any, record: any) => (
+        <div>{record?.readerCode || 'Không tìm thấy đầu đọc'}</div>
+      ),
     },
     {
       title: 'Hoạt động',

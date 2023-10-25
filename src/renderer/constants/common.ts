@@ -1,5 +1,12 @@
 export const DEFAULT_PAGE_SIZE = 10;
 export const LOCALSTORAGE_USER = 'user';
+export const LOCALSTORAGE_NOW = 'now';
+export const LOCALSTORAGE_IS_DISCONNECT = 'is_connect';
+
+export interface IPagination {
+  currentPage: number;
+  pageSize: number;
+}
 
 export const PAGE_SIZE_OPTIONS = [
   {
