@@ -29,5 +29,3 @@ npm-debug.log.*
 *.scss.d.ts
 
 yarn.lock
-
-env.ts
