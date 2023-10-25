@@ -83,7 +83,7 @@ const createWindow = async () => {
   });
 
   mainWindow.loadURL(resolveHtmlPath('index.html'));
-  // mainWindow.setFullScreen(true);
+  mainWindow.setFullScreen(true);
 
   mainWindow.on('ready-to-show', () => {
     if (!mainWindow) {
