@@ -23,7 +23,10 @@ jobs:
       - name: npm install
         run: |
           npm install
+          npm run postinstall
+          npm run build
 
       - name: npm test
         run: |
           npm run package-live
+          npm exec electron-builder -- --publish always --win
