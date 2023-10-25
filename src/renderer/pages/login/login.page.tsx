@@ -1,20 +1,31 @@
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, notification } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
 import RaceTimeLogo from '../../assets/logo-racetime.png';
 import TrackifyLogo from '../../assets/logo-trackify.png';
 import { HOME } from '../../routes/path';
 import './login.scss';
+import { PASSWORD, USERNAME } from '../../../../env';
 
 const LoginPage = () => {
   const navigate = useNavigate();
 
   const onFinish = (dataForm: any) => {
-    localStorage.setItem(
-      'user',
-      JSON.stringify({ username: dataForm.username }),
-    );
-    navigate(HOME, { replace: true });
+    if (
+      dataForm.username.toUpperCase() === USERNAME &&
+      dataForm.password === PASSWORD
+    ) {
+      localStorage.setItem(
+        'user',
+        JSON.stringify({ username: dataForm.username }),
+      );
+      navigate(HOME, { replace: true });
+    } else {
+      notification.error({
+        message: 'Đăng nhập thất bại',
+        description: 'Vui lòng kiểm tra lại tài khoản hoặc mật khẩu',
+      });
+    }
   };
 
   const onFinishFailed = (dataForm: any) => {

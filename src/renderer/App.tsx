@@ -1,17 +1,37 @@
-import * as mqtt from 'mqtt/dist/mqtt';
 import { useEffect } from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
 
-import { MQTT_CLIENT_ID, MQTT_TOPIC, MQTT_URL } from '../../env';
+import {
+  MQTT_COMMAND_TOPIC,
+  MQTT_MANAGEMENT_EVENTS_TOPIC,
+  MQTT_RESPONSE_TOPIC,
+  MQTT_TAG_DATA_EVENTS_TOPIC,
+} from '../../env';
+import mqttClient from './configs/mqtt.config';
 import routes from './routes/routes';
 import './styles/index.scss';
+import { mqttDisconnect, mqttPublish } from './services/mqtt.service';
+import { notification } from 'antd';
 
 export default function App() {
-  useEffect(() => {
-    const mqttClient = mqtt.connect(MQTT_URL, {
-      clientId: MQTT_CLIENT_ID,
+  const [, contextHolder] = notification.useNotification();
+
+  const getReaderDeviceInfo = () => {
+    mqttPublish(MQTT_COMMAND_TOPIC, {
+      command: 'get_status',
+      command_id: Date.now().toString(),
+      payload: {},
     });
 
+    mqttPublish(MQTT_COMMAND_TOPIC, {
+      command: 'get_network',
+      command_id: Date.now().toString(),
+      payload: {},
+    });
+  };
+
+  useEffect(() => {
+    let interval: any;
     mqttClient.on('error', (error) => {
       console.error('MQTT error:', error);
     });
@@ -21,24 +41,23 @@ export default function App() {
     });
 
     mqttClient.on('connect', () => {
-      console.log(`${MQTT_CLIENT_ID} connected`);
-      mqttClient.subscribe(MQTT_TOPIC, function (err) {
-        if (!err) {
-          mqttClient.publish(MQTT_TOPIC, `${MQTT_CLIENT_ID} connected`);
-        }
-      });
-    });
-
-    mqttClient.on('message', (topic, message) => {
-      console.log(
-        `Received message from topic ${topic}: ${message.toString()}`,
-      );
+      interval = setInterval(getReaderDeviceInfo, 30000);
+      mqttClient.subscribe(MQTT_MANAGEMENT_EVENTS_TOPIC);
+      mqttClient.subscribe(MQTT_TAG_DATA_EVENTS_TOPIC);
+      mqttClient.subscribe(MQTT_COMMAND_TOPIC);
+      mqttClient.subscribe(MQTT_RESPONSE_TOPIC);
     });
 
     return () => {
-      mqttClient.end();
+      mqttDisconnect();
+      clearInterval(interval);
     };
   }, []);
 
-  return <Router>{routes}</Router>;
+  return (
+    <>
+      {contextHolder}
+      <Router>{routes}</Router>
+    </>
+  );
 }

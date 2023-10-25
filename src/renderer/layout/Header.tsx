@@ -1,22 +1,35 @@
 import { Icon } from '@iconify/react';
 import { Avatar } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import RaceTimeLogo from '../assets/logo-racetime-white.png';
 import Clock from '../containers/clock';
 import Menu from '../containers/menu';
+import mqttClient from '../configs/mqtt.config';
+import { MQTT_RESPONSE_TOPIC } from '../../../env';
 
 const Header = () => {
   const user = localStorage.getItem('user');
   const [openMenu, setOpenMenu] = useState(false);
-  console.log(user);
+  const [readerCode, setReaderCode] = useState();
+
+  useEffect(() => {
+    mqttClient.on('message', (topic, message) => {
+      if (topic === MQTT_RESPONSE_TOPIC) {
+        const data: any = JSON.parse(message.toString());
+        if (data.command === 'get_network') {
+          setReaderCode(data.payload.hostName);
+        }
+      }
+    });
+  }, []);
 
   return (
     <div className="header">
-      <div>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
         <Icon
-          icon="ic:round-home"
-          className="fs-48 mr-25"
+          icon="ic:baseline-home"
+          className="fs-44 mr-25"
           onClick={() => {
             setOpenMenu(true);
           }}
@@ -25,11 +38,11 @@ const Header = () => {
         <img
           src={RaceTimeLogo}
           alt="Racetime logo"
-          style={{ width: '216px', objectFit: 'contain' }}
+          style={{ width: '150px', objectFit: 'contain' }}
         />
       </div>
 
-      <div className="fs-20 font-bold">Mã thiết bị: FR001</div>
+      <div className="fs-16 font-bold">Mã thiết bị: {readerCode}</div>
 
       <Clock />
 

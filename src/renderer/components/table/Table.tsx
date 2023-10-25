@@ -5,9 +5,10 @@ import { DEFAULT_PAGE_SIZE, PAGE_SIZE_OPTIONS } from '../../constants/common';
 interface ITable {
   columns: any;
   data: any;
+  disablePagination?: boolean;
 }
 
-const Table = ({ columns, data }: ITable) => {
+const Table = ({ columns, data, disablePagination }: ITable) => {
   const columnsConvert = columns.map((column: any) => ({
     ...column,
     key: column.title,
@@ -21,25 +22,27 @@ const Table = ({ columns, data }: ITable) => {
         pagination={false}
         size="small"
       />
-      <div className="pagination_container">
-        <div>
-          Hiển thị
-          <Select
-            defaultValue={DEFAULT_PAGE_SIZE}
-            options={PAGE_SIZE_OPTIONS}
-            className="mr-5 ml-5"
+      {!disablePagination && (
+        <div className="pagination_container">
+          <div>
+            Hiển thị
+            <Select
+              defaultValue={DEFAULT_PAGE_SIZE}
+              options={PAGE_SIZE_OPTIONS}
+              className="mr-5 ml-5"
+            />
+            trong tổng số {data.length} bản ghi
+          </div>
+          <Checkbox defaultChecked className="font-medium">
+            Live Update
+          </Checkbox>
+          <Pagination
+            defaultCurrent={1}
+            total={data.length}
+            pageSize={DEFAULT_PAGE_SIZE}
           />
-          trong tổng số {data.length} bản ghi
         </div>
-        <Checkbox defaultChecked className="font-medium">
-          Live Update
-        </Checkbox>
-        <Pagination
-          defaultCurrent={1}
-          total={data.length}
-          pageSize={DEFAULT_PAGE_SIZE}
-        />
-      </div>
+      )}
     </>
   );
 };
