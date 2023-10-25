@@ -1,9 +1,0 @@
-stages:
-  - build
-
-build:
-  stage: build
-  image: node:18
-  script:
-    - npm install
-    - npm run package-live 

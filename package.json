@@ -219,9 +219,9 @@
       "./assets/**"
     ],
     "publish": {
-      "provider": "trackify",
-      "owner": "Jindo Katory",
-      "repo": "Racetime System"
+      "provider": "github",
+      "owner": "electron-react-boilerplate",
+      "repo": "electron-react-boilerplate"
     }
   },
   "collective": {
