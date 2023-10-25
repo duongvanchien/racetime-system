@@ -1,17 +1,44 @@
 import { Icon } from '@iconify/react';
-import { Avatar } from 'antd';
+import { Avatar, Dropdown, MenuProps } from 'antd';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import RaceTimeLogo from '../assets/logo-racetime-white.png';
 import Clock from '../containers/clock';
 import Menu from '../containers/menu';
 import mqttClient from '../configs/mqtt.config';
 import { MQTT_RESPONSE_TOPIC } from '../../../env';
+import { LOGIN, WELCOME } from '../routes/path';
 
 const Header = () => {
-  const user = localStorage.getItem('user');
+  const navigate = useNavigate();
   const [openMenu, setOpenMenu] = useState(false);
   const [readerCode, setReaderCode] = useState();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate(WELCOME, { replace: true });
+  };
+
+  const items: MenuProps['items'] = [
+    {
+      key: '1',
+      label: (
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 4,
+            color: 'red',
+          }}
+          onClick={handleLogout}
+        >
+          <Icon icon="solar:logout-outline" className="fs-16" />
+          Đăng xuất
+        </div>
+      ),
+    },
+  ];
 
   useEffect(() => {
     mqttClient.on('message', (topic, message) => {
@@ -46,14 +73,22 @@ const Header = () => {
 
       <Clock />
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
-        <div>Trackify</div>
-        <Avatar
-          src="https://img.meta.com.vn/Data/image/2021/08/17/con-vit-vang-tren-fb-la-gi-trend-anh-avatar-con-vit-vang-la-gi-3.jpg"
-          alt="avatar"
-          size="large"
-        />
-      </div>
+      <Dropdown
+        menu={{ items }}
+        placement="bottomRight"
+        arrow
+        trigger={['click']}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+          <div>Trackify</div>
+          <Avatar
+            src="https://img.meta.com.vn/Data/image/2021/08/17/con-vit-vang-tren-fb-la-gi-trend-anh-avatar-con-vit-vang-la-gi-3.jpg"
+            alt="avatar"
+            size="large"
+          />
+        </div>
+      </Dropdown>
+
       <Menu
         open={openMenu}
         handleClose={() => {

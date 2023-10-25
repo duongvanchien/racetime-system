@@ -48,7 +48,7 @@ const HomePage = () => {
       title: 'Thời gian',
       dataIndex: 'time',
       render: (_: any, record: any) => (
-        <>{moment(record?.time).format('HH:mm:ss DD/MM/YYYY')}</>
+        <>{moment(record?.time).format('HH:mm:ss')}</>
       ),
     },
     {
@@ -110,7 +110,7 @@ const HomePage = () => {
           <StopWatch />
         </Col>
         <Col span={12}>
-          <div className="mt-15 mb-10 font-bold fs-16">ĐẦU ĐỌC RFID</div>
+          <div className="mb-10 font-bold fs-16">ĐẦU ĐỌC RFID</div>
           <RfidTable
             isAccessInternet={isAccessInternet}
             isActive={isActive}

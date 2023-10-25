@@ -40,6 +40,7 @@ const Table = ({ columns, data, disablePagination }: ITable) => {
             defaultCurrent={1}
             total={data.length}
             pageSize={DEFAULT_PAGE_SIZE}
+            current={1}
           />
         </div>
       )}

@@ -4,15 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import RaceTimeLogo from '../../assets/logo-racetime.png';
 import TrackifyLogo from '../../assets/logo-trackify.png';
 import { HOME } from '../../routes/path';
-import './login.scss';
 import { PASSWORD, USERNAME } from '../../../../env';
+import './login.scss';
 
 const LoginPage = () => {
   const navigate = useNavigate();
 
   const onFinish = (dataForm: any) => {
     if (
-      dataForm.username.toUpperCase() === USERNAME &&
+      dataForm.username.toUpperCase() === USERNAME.toUpperCase() &&
       dataForm.password === PASSWORD
     ) {
       localStorage.setItem(
