@@ -3,12 +3,12 @@ import { Avatar, Dropdown, MenuProps } from 'antd';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { MQTT_RESPONSE_TOPIC } from '../../../env';
 import RaceTimeLogo from '../assets/logo-racetime-white.png';
+import mqttClient from '../configs/mqtt.config';
 import Clock from '../containers/clock';
 import Menu from '../containers/menu';
-import mqttClient from '../configs/mqtt.config';
-import { MQTT_RESPONSE_TOPIC } from '../../../env';
-import { LOGIN, WELCOME } from '../routes/path';
+import { WELCOME } from '../routes/path';
 
 const Header = () => {
   const navigate = useNavigate();

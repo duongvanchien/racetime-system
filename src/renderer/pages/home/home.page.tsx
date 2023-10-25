@@ -17,18 +17,18 @@ import { mqttPublish } from '../../services/mqtt.service';
 
 const HomePage = () => {
   const [bibsData, setBibsData] = useState<IBib[]>([]);
-  const [isActive, setIsActive] = useState(true);
-  const [isAccessInternet, setIsAccessInternet] = useState(true);
+  const [isActive, setIsActive] = useState(false);
+  const [isAccessInternet, setIsAccessInternet] = useState(false);
   const [readerCode, setReaderCode] = useState();
   const [antenas, setAntenas] = useState<string[]>([
-    'connected',
-    'connected',
-    'connected',
-    'connected',
-    'connected',
-    'connected',
-    'connected',
-    'connected',
+    'disconnected',
+    'disconnected',
+    'disconnected',
+    'disconnected',
+    'disconnected',
+    'disconnected',
+    'disconnected',
+    'disconnected',
   ]);
 
   const columns = [
