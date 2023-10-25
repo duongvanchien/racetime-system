@@ -3,10 +3,6 @@ stages:
 
 build:
   stage: build
-  image: node:14 # Chọn hình ảnh Docker phù hợp với dự án của bạn
+  image: node:18
   script:
-    - npm install
-    - npm run package-live # Thay lệnh này bằng lệnh xây dựng của ứng dụng Electron của bạn
-  # artifacts:
-  #   paths:
-  #     - /release/build/Racetime System Setup 4.6.0.exe
+    - npm run package-live 
